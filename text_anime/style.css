@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+main {
+  height: 100vh;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* ---↑要素が2つある場合の真ん中寄せ */
+
+.textAnimation {
+  color: #fff;
+  font-size: 70px;
+  letter-spacing: 0.05em;
+}
+
+.textAnimation:not(:first-of-type) {
+  margin-top: 20px;
+  font-size: 70px;
+}
+/* アニメーションを作る */
+
+/* @keyframes showTextFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes showTextFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  100% {
+    opacity: 1;
+  }
+} */
+/* transformはinline要素には効かないので、inlein-blockにする */
+
+@keyframes showTextFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+.textAnimation span {
+  display: inline-block;
+}
+.textAnimation > span {
+  overflow: hidden;
+}
+.textAnimation > span > span {
+  animation: showTextFromBottom 1s backwards;
+}
+/* .textAnimation span:nth-of-type(odd) {
+  animation: showTextFromTop ease-out 1s backwards;
+}
+.textAnimation span:nth-of-type(even) {
+  animation: showTextFromBottom ease-out 1s backwards;
+} */
